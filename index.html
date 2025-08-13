@@ -560,7 +560,7 @@
             afsc: headerCells.findIndex(h => h.includes('dafsc') || h.includes('afsc')),
             dos: headerCells.findIndex(h => h === 'dos' || h.includes('ets') || h.includes('separation')),
             deros: headerCells.findIndex(h => h === 'deros' || h.includes('return from overseas')),
-            inprocessingDate: headerCells.findIndex(h => h.includes('inprocessingdate') || h.includes('in processing date'))
+            inprocessingDate: headerCells.findIndex(h => h.includes('inprocessingdate') || h.includes('in processing date') || h.includes('date arrived station'))
           };
           if (colIndex.name === -1 || colIndex.rank === -1 || colIndex.dos === -1) {
             toast(`CSV headers do not look correct. Missing FULL_NAME/NAME, GRADE/RANK, or DOS. Parsed header: [${headerCells.join(', ')}]`, 'danger');
