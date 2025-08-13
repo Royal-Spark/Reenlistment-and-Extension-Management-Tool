@@ -366,7 +366,7 @@
           <div class="member-info">
             <h4><span class="status-indicator ${statusClass(m.status)}"></span>${normalizeGrade(m.rank)} ${displayName}</h4>
             <small>
-              AFSC: ${m.afsc || '—'} | DOS: ${m.dos} | DEROS: ${m.deros || '—'}
+              AFSC: ${m.afsc || '—'} | DOS: ${m.dos || '—'} | DEROS: ${m.deros || '—'}
               | Retainability: ${m.retainabilityMonths ?? '—'} mo
               | Assignment: ${
                 m.assignmentEligible === true ? 'Eligible' :
@@ -387,7 +387,11 @@
         const ninetyDaysFromNow = new Date(now.getTime() + 90 * 24 * 60 * 60 * 1000);
 
         $('#totalMembers').textContent = members.length;
-        $('#upcomingActions').textContent = members.filter(m => { const d = new Date(m.dos); return d <= ninetyDaysFromNow && d > now && m.status !== 'completed'; }).length;
+        $('#upcomingActions').textContent = members.filter(m => {
+          if (!m.dos) return false;
+          const d = new Date(m.dos);
+          return d <= ninetyDaysFromNow && d > now && m.status !== 'completed';
+        }).length;
         $('#eligibleCount').textContent = members.filter(m => m.status === 'eligible').length;
         $('#completedReenCount').textContent = members.filter(m => m.status === 'completed').length;
         $('#pendingReview').textContent = members.filter(m => m.status === 'pending' || m.status === 'extension' || m.status === 'in_progress' || m.status === 'awaiting_cc').length;
@@ -400,7 +404,11 @@
         const container = $('#upcomingDeadlines');
         const now = new Date();
         const ninetyDaysFromNow = new Date(now.getTime() + 90 * 24 * 60 * 60 * 1000);
-        const upcoming = members.filter(m => { const d = new Date(m.dos); return d <= ninetyDaysFromNow && d > now && m.status !== 'completed'; }).sort((a,b) => new Date(a.dos) - new Date(b.dos));
+        const upcoming = members.filter(m => {
+          if (!m.dos) return false;
+          const d = new Date(m.dos);
+          return d <= ninetyDaysFromNow && d > now && m.status !== 'completed';
+        }).sort((a,b) => new Date(a.dos) - new Date(b.dos));
 
         if (!upcoming.length) {
           container.innerHTML = '<div class="alert alert-info"><strong>No upcoming deadlines in next 90 days.</strong></div>';
@@ -562,8 +570,8 @@
             deros: headerCells.findIndex(h => h === 'deros' || h.includes('return from overseas')),
             inprocessingDate: headerCells.findIndex(h => h.includes('inprocessingdate') || h.includes('in processing date') || h.includes('date arrived station'))
           };
-          if (colIndex.name === -1 || colIndex.rank === -1 || colIndex.dos === -1) {
-            toast(`CSV headers do not look correct. Missing FULL_NAME/NAME, GRADE/RANK, or DOS. Parsed header: [${headerCells.join(', ')}]`, 'danger');
+          if (colIndex.name === -1 || colIndex.rank === -1) {
+            toast(`CSV headers do not look correct. Missing FULL_NAME/NAME or GRADE/RANK. Parsed header: [${headerCells.join(', ')}]`, 'danger');
             return;
           }
 
@@ -591,7 +599,7 @@
               inprocessingDate: colIndex.inprocessingDate !== -1 ? (values[colIndex.inprocessingDate] ?? '') : '',
               status: 'pending'
             };
-          }).filter(d => d && d.name && d.rank && d.dos);
+          }).filter(d => d && d.name && d.rank);
 
           if (csvImportData.length === 0) { toast('Could not parse any valid member data from the file.', 'danger'); return; }
 
@@ -616,11 +624,11 @@
           const parsedDos = parseDosDate(item.dos);
           const parsedDeros = item.deros ? parseDosDate(item.deros) : null;
           const parsedInprocessingDate = item.inprocessingDate ? parseDosDate(item.inprocessingDate) : null;
-          if (item.name && item.rank && parsedDos) {
+          if (item.name && item.rank) {
             const member = {
               name: item.name,
               rank: item.rank,
-              dos: parsedDos,
+              dos: parsedDos || null,
               deros: parsedDeros || null,
               inprocessingDate: parsedInprocessingDate || null,
               afsc: item.afsc || 'N/A',
@@ -747,12 +755,12 @@
         const memberData = {
           name: $('#memberName').value.trim(),
           rank: $('#memberRank').value,
-          dos: $('#memberDOS').value,
-          inprocessingDate: $('#memberInprocessingDate').value,
+          dos: $('#memberDOS').value || null,
+          inprocessingDate: $('#memberInprocessingDate').value || null,
           afsc: $('#memberAFSC').value.trim(),
           status: $('#memberStatus').value
         };
-        if (!memberData.name || !memberData.rank || !memberData.dos || !memberData.status) {
+        if (!memberData.name || !memberData.rank || !memberData.status) {
           toast('Please complete all required fields', 'danger');
           return false;
         }
