@@ -68,343 +68,351 @@
 <body>
   <div class="container">
     <header class="header">
-    <h1> USAF Reenlistment & Extension Management Tool</h1>
-    <div class="subtitle">Streamlined dashboard for Unit Program Coordinators</div>
+      <h1> USAF Reenlistment & Extension Management Tool</h1>
+      <div class="subtitle">Streamlined dashboard for Unit Program Coordinators</div>
     </header>
 
     <nav class="main-nav" id="mainNav">
-    <button class="nav-btn active" data-section="dashboard" onclick="window.setActiveSection('dashboard')">📊 Dashboard</button>
-    <button class="nav-btn" data-section="eligibility" onclick="window.setActiveSection('eligibility')">✅ Eligibility Check</button>
-    <button class="nav-btn" data-section="reenlistment" onclick="window.setActiveSection('reenlistment')">🔄 Reenlistment Hub</button>
-    <button class="nav-btn" data-section="extension" onclick="window.setActiveSection('extension')">📅 Extension Hub</button>
-    <button class="nav-btn" data-section="forms" onclick="window.setActiveSection('forms')">📋 Forms & Documents</button>
-    <button class="nav-btn" data-section="resources" onclick="window.setActiveSection('resources')">📚 Resources</button>
+      <button class="nav-btn active" data-section="dashboard" onclick="window.setActiveSection('dashboard')">📊 Dashboard</button>
+      <button class="nav-btn" data-section="eligibility" onclick="window.setActiveSection('eligibility')">✅ Eligibility Check</button>
+      <button class="nav-btn" data-section="reenlistment" onclick="window.setActiveSection('reenlistment')">🔄 Reenlistment Hub</button>
+      <button class="nav-btn" data-section="extension" onclick="window.setActiveSection('extension')">📅 Extension Hub</button>
+      <button class="nav-btn" data-section="forms" onclick="window.setActiveSection('forms')">📋 Forms & Documents</button>
+      <button class="nav-btn" data-section="resources" onclick="window.setActiveSection('resources')">📚 Resources</button>
     </nav>
 
     <section id="dashboard" class="content-section active">
-    <div class="dashboard-stats">
-    <div class="stat-card" data-breakdown="total" onclick="window.openBreakdown('total')">
-    <div class="stat-number" id="totalMembers">0</div>
-    <div class="stat-label">Total Members Tracked</div>
-    </div>
-    <div class="stat-card" data-breakdown="upcoming" onclick="window.openBreakdown('upcoming')">
-    <div class="stat-number" id="upcomingActions">0</div>
-    <div class="stat-label">Upcoming Actions (90 days)</div>
-    </div>
-    <div class="stat-card" data-breakdown="completed" onclick="window.openBreakdown('completed')">
-    <div class="stat-number" id="completedActions">0</div>
-    <div class="stat-label">Reenlistment Eligible</div>
-    </div>
-    <div class="stat-card" data-breakdown="pending" onclick="window.openBreakdown('pending')">
-    <div class="stat-number" id="pendingReview">0</div>
-    <div class="stat-label">Pending Review</div>
-    </div>
-    <div class="stat-card" data-breakdown="completedReen" onclick="window.openBreakdown('completedReen')">
-    <div class="stat-number" id="completedReenCount">0</div>
-    <div class="stat-label">Completed Reenlistment</div>
-    </div>
-    </div>
+      <div class="dashboard-stats">
+        <div class="stat-card" data-breakdown="total" onclick="window.openBreakdown('total')">
+          <div class="stat-number" id="totalMembers">0</div>
+          <div class="stat-label">Total Members Tracked</div>
+        </div>
+        <div class="stat-card" data-breakdown="upcoming" onclick="window.openBreakdown('upcoming')">
+          <div class="stat-number" id="upcomingActions">0</div>
+          <div class="stat-label">Upcoming Actions (90 days)</div>
+        </div>
+        <div class="stat-card" data-breakdown="eligible" onclick="window.openBreakdown('eligible')">
+          <div class="stat-number" id="eligibleCount">0</div>
+          <div class="stat-label">Reenlistment Eligible</div>
+        </div>
+        <div class="stat-card" data-breakdown="pending" onclick="window.openBreakdown('pending')">
+          <div class="stat-number" id="pendingReview">0</div>
+          <div class="stat-label">Pending Review</div>
+        </div>
+        <div class="stat-card" data-breakdown="completed" onclick="window.openBreakdown('completed')">
+          <div class="stat-number" id="completedReenCount">0</div>
+          <div class="stat-label">Completed Reenlistment</div>
+        </div>
+      </div>
 
-    <div class="grid">
-    <div class="card">
-    <h2>📋 Quick Actions</h2>
-    <div style="display:flex;flex-direction:column;gap:.5rem;">
-    <button class="btn" onclick="window.setActiveSection('eligibility')">Check Eligibility</button>
-    <button class="btn btn-success" id="btnAddMember" onclick="window.openAddMember()">Add New Member</button>
-    <button class="btn btn-warning" id="btnGenerateReport" onclick="window.generateReport()">Generate Report</button>
-    <button class="btn" id="btnImportCsv" onclick="window.pickCsv()">Import Members (CSV)</button>
-    <input type="file" id="csvFileInput" accept=".csv" style="display:none" />
-    </div>
-    </div>
-    <div class="card">
-    <h2>⏰ Upcoming Deadlines</h2>
-    <div id="upcomingDeadlines">
-    <div class="alert alert-info"><strong>No upcoming deadlines tracked.</strong><br/>Add members to see upcoming DOS dates and required actions.</div>
-    </div>
-    </div>
-    </div>
+      <div class="grid">
+        <div class="card">
+          <h2>📋 Quick Actions</h2>
+          <div style="display:flex;flex-direction:column;gap:.5rem;">
+            <button class="btn" onclick="window.setActiveSection('eligibility')">Check Eligibility</button>
+            <button class="btn btn-success" id="btnAddMember" onclick="window.openAddMember()">Add New Member</button>
+            <button class="btn btn-warning" id="btnGenerateReport" onclick="window.generateReport()">Generate Report</button>
+            <button class="btn" id="btnImportCsv" onclick="window.pickCsv()">Import Members (CSV)</button>
+            <input type="file" id="csvFileInput" accept=".csv" style="display:none" />
+          </div>
+        </div>
+        <div class="card">
+          <h2>⏰ Upcoming Deadlines</h2>
+          <div id="upcomingDeadlines">
+            <div class="alert alert-info"><strong>No upcoming deadlines tracked.</strong><br/>Add members to see upcoming DOS dates and required actions.</div>
+          </div>
+        </div>
+      </div>
 
-    <div class="card">
-    <h2>👥 Member Tracking</h2>
-    <div class="form-group"><input type="text" class="form-control" placeholder="Search members by name, rank, or AFSC..." id="memberSearch" /></div>
-    <div id="memberList">
-    <div class="alert alert-info"><strong>No members currently tracked.</strong><br/>Use the "Add New Member" button to start tracking reenlistments and extensions.</div>
-    </div>
-    </div>
+      <div class="card">
+        <h2>👥 Member Tracking</h2>
+        <div class="form-group"><input type="text" class="form-control" placeholder="Search members by name, rank, or AFSC..." id="memberSearch" /></div>
+        <div id="memberList">
+          <div class="alert alert-info"><strong>No members currently tracked.</strong><br/>Use the "Add New Member" button to start tracking reenlistments and extensions.</div>
+        </div>
+      </div>
     </section>
 
     <section id="eligibility" class="content-section">
-    <div class="card">
-    <h2>✅ Reenlistment & Extension Eligibility Assessment</h2>
-    <form id="eligibilityForm" onsubmit="return false;">
-    <div class="grid">
-    <div class="form-group"><label for="memberType">Member Type</label><select class="form-control" id="memberType"><option value="">Select Member Type</option><option value="fta">First Term Airman (FTA)</option><option value="ftg">First Term Guardian (FTG)</option><option value="second">Second Term</option><option value="career">Career</option></select></div>
-    <div class="form-group"><label for="enlistmentLength">Initial Enlistment Length</label><select class="form-control" id="enlistmentLength"><option value="">Select Length</option><option value="4">4 Years</option><option value="6">6 Years</option></select></div>
-    <div class="form-group"><label for="monthsServed">Months Served on Current Enlistment</label><input type="number" class="form-control" id="monthsServed" min="0" max="72" /></div>
-    <div class="form-group"><label for="reCode">Current RE Code</label><select class="form-control" id="reCode"><option value="">Select RE Code</option><option value="1J">1J - Eligible, elects separation</option><option value="1K">1K - Career, selected by CC</option><option value="1M">1M - Second Term/Career, not considered</option><option value="1P">1P - Second Term, selected</option><option value="1R">1R - First Term, selected</option><option value="2X">2X - Non-selected for reenlistment</option><option value="3C">3C - FTA/FTG not yet considered</option><option value="4J">4J - Unsatisfactory fitness</option><option value="4K">4K - Pending MEB/PEB</option></select></div>
-    <div class="form-group"><label for="currentGrade">Current Grade</label><select class="form-control" id="currentGrade"><option value="">Select Grade</option><option value="E1">E-1 Airman Basic</option><option value="E2">E-2 Airman</option><option value="E3">E-3 Airman First Class</option><option value="E4">E-4 Senior Airman</option><option value="E5">E-5 Staff Sergeant</option><option value="E6">E-6 Technical Sergeant</option><option value="E7">E-7 Master Sergeant</option><option value="E8">E-8 Senior Master Sergeant</option><option value="E9">E-9 Chief Master Sergeant</option></select></div>
-    </div>
-    <div class="form-group">
-    <h3>Additional Considerations</h3>
-    <ul style="list-style:none;padding:0; columns: 2; gap: 1rem;">
-    <li><label><input type="checkbox" id="uif" /> Has Unfavorable Information File (UIF)</label></li>
-    <li><label><input type="checkbox" id="lostTime" /> Has 5+ days lost time on current enlistment</label></li>
-    <li><label><input type="checkbox" id="fitnessFailure" /> Current fitness failure</label></li>
-    <li><label><input type="checkbox" id="controlRoster" /> On Control Roster</label></li>
-    <li><label><input type="checkbox" id="nonUsCitizen" /> Non-US Citizen</label></li>
-    <li><label><input type="checkbox" id="pendingLegal" /> Pending legal action</label></li>
-    </ul>
-    </div>
-    <button type="button" class="btn btn-success" onclick="window.checkEligibility()">🔍 Check Eligibility</button>
-    </form>
-    <div id="eligibilityResults" style="margin-top:1rem;"></div>
-    </div>
+      <div class="card">
+        <h2>✅ Reenlistment & Extension Eligibility Assessment</h2>
+        <form id="eligibilityForm" onsubmit="return false;">
+          <div class="grid">
+            <div class="form-group"><label for="memberType">Member Type</label><select class="form-control" id="memberType"><option value="">Select Member Type</option><option value="fta">First Term Airman (FTA)</option><option value="ftg">First Term Guardian (FTG)</option><option value="second">Second Term</option><option value="career">Career</option></select></div>
+            <div class="form-group"><label for="enlistmentLength">Initial Enlistment Length</label><select class="form-control" id="enlistmentLength"><option value="">Select Length</option><option value="4">4 Years</option><option value="6">6 Years</option></select></div>
+            <div class="form-group"><label for="monthsServed">Months Served on Current Enlistment</label><input type="number" class="form-control" id="monthsServed" min="0" max="72" /></div>
+            <div class="form-group"><label for="reCode">Current RE Code</label><select class="form-control" id="reCode"><option value="">Select RE Code</option><option value="1J">1J - Eligible, elects separation</option><option value="1K">1K - Career, selected by CC</option><option value="1M">1M - Second Term/Career, not considered</option><option value="1P">1P - Second Term, selected</option><option value="1R">1R - First Term, selected</option><option value="2X">2X - Non-selected for reenlistment</option><option value="3C">3C - FTA/FTG not yet considered</option><option value="4J">4J - Unsatisfactory fitness</option><option value="4K">4K - Pending MEB/PEB</option></select></div>
+            <div class="form-group"><label for="currentGrade">Current Grade</label><select class="form-control" id="currentGrade"><option value="">Select Grade</option><option value="E1">E-1 Airman Basic</option><option value="E2">E-2 Airman</option><option value="E3">E-3 Airman First Class</option><option value="E4">E-4 Senior Airman</option><option value="E5">E-5 Staff Sergeant</option><option value="E6">E-6 Technical Sergeant</option><option value="E7">E-7 Master Sergeant</option><option value="E8">E-8 Senior Master Sergeant</option><option value="E9">E-9 Chief Master Sergeant</option></select></div>
+          </div>
+          <div class="form-group">
+            <h3>Additional Considerations</h3>
+            <ul style="list-style:none;padding:0; columns: 2; gap: 1rem;">
+              <li><label><input type="checkbox" id="uif" /> Has Unfavorable Information File (UIF)</label></li>
+              <li><label><input type="checkbox" id="lostTime" /> Has 5+ days lost time on current enlistment</label></li>
+              <li><label><input type="checkbox" id="fitnessFailure" /> Current fitness failure</label></li>
+              <li><label><input type="checkbox" id="controlRoster" /> On Control Roster</label></li>
+              <li><label><input type="checkbox" id="nonUsCitizen" /> Non-US Citizen</label></li>
+              <li><label><input type="checkbox" id="pendingLegal" /> Pending legal action</label></li>
+            </ul>
+          </div>
+          <button type="button" class="btn btn-success" onclick="window.checkEligibility()">🔍 Check Eligibility</button>
+        </form>
+        <div id="eligibilityResults" style="margin-top:1rem;"></div>
+      </div>
     </section>
 
     <section id="reenlistment" class="content-section">
-    <div class="card">
-    <h2>🔄 Reenlistment Process Hub</h2>
-    <div class="timeline">
-    <div class="timeline-item"><h4>1. Pre-Reenlistment Requirements</h4><p>Complete mandatory briefings and documentation</p><ul><li>UCMJ briefing (within 30 days of reenlistment)</li><li>Informed Decision Seminar</li><li>Review member's eligibility status</li><li>Verify all administrative requirements</li></ul></div>
-    <div class="timeline-item"><h4>2. Reenlistment Date Selection</h4><p>Coordinate and schedule the reenlistment ceremony</p><ul><li>Select appropriate date (before DOS)</li><li>Coordinate with member's preferences</li><li>Arrange for commissioned officer to administer oath</li><li>Schedule ceremony location</li></ul></div>
-    <div class="timeline-item"><h4>3. Documentation & Forms</h4><p>Complete all required reenlistment paperwork</p><ul><li>DD Form 4 - Enlistment/Reenlistment Document</li><li>DAF Form 901 - Reenlistment Eligibility Annex</li><li>Update member's records in personnel systems</li><li>Process any bonus or incentive paperwork</li></ul></div>
-    <div class="timeline-item"><h4>4. Ceremony & Oath Administration</h4><p>Conduct the official reenlistment ceremony</p><ul><li>Oath administered by commissioned officer</li><li>Witness signatures on DD Form 4</li><li>Photography/documentation (if desired)</li><li>Submit completed forms to MPF</li></ul></div>
-    </div>
-    </div>
-    <div class="card">
-    <h2>📋 Reenlistment Checklist</h2>
-    <div class="alert alert-info"><strong>Use this checklist to track reenlistment progress for each member</strong></div>
-    <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));">
-    <div><h3>Administrative Requirements</h3><ul style="list-style:none;padding:0;"><li><label><input type="checkbox" /> Eligibility verified</label></li><li><label><input type="checkbox" /> RE Code appropriate</label></li><li><label><input type="checkbox" /> No disqualifying factors</label></li><li><label><input type="checkbox" /> Security clearance current</label></li></ul></div>
-    <div><h3>Pre-Ceremony Requirements</h3><ul style="list-style:none;padding:0;"><li><label><input type="checkbox" /> UCMJ briefing completed</label></li><li><label><input type="checkbox" /> Informed Decision Seminar attended</label></li><li><label><input type="checkbox" /> Reenlistment date selected</label></li><li><label><input type="checkbox" /> Commissioned officer arranged</label></li><li><label><input type="checkbox" /> Ceremony location confirmed</label></li></ul></div>
-    <div><h3>Documentation</h3><ul style="list-style:none;padding:0;"><li><label><input type="checkbox" /> DD Form 4 prepared</label></li><li><label><input type="checkbox" /> DAF Form 901 completed</label></li><li><label><input type="checkbox" /> Bonus paperwork (if applicable)</label></li><li><label><input type="checkbox" /> Assignment preferences documented</label></li><li><label><input type="checkbox" /> All forms reviewed for accuracy</label></li></ul></div>
-    <div><h3>Post-Ceremony</h3><ul style="list-style:none;padding:0;"><li><label><input type="checkbox" /> Oath administered</label></li><li><label><input type="checkbox" /> Forms signed and witnessed</label></li><li><label><input type="checkbox" /> Documentation submitted to MPF</label></li><li><label><input type="checkbox" /> Personnel records updated</label></li><li><label><input type="checkbox" /> New DOS reflected in systems</label></li></ul></div>
-    </div>
-    </div>
+      <div class="card">
+        <h2>🔄 Reenlistment Process Hub</h2>
+        <div class="timeline">
+          <div class="timeline-item"><h4>1. Pre-Reenlistment Requirements</h4><p>Complete mandatory briefings and documentation</p><ul><li>UCMJ briefing (within 30 days of reenlistment)</li><li>Informed Decision Seminar</li><li>Review member's eligibility status</li><li>Verify all administrative requirements</li></ul></div>
+          <div class="timeline-item"><h4>2. Reenlistment Date Selection</h4><p>Coordinate and schedule the reenlistment ceremony</p><ul><li>Select appropriate date (before DOS)</li><li>Coordinate with member's preferences</li><li>Arrange for commissioned officer to administer oath</li><li>Schedule ceremony location</li></ul></div>
+          <div class="timeline-item"><h4>3. Documentation & Forms</h4><p>Complete all required reenlistment paperwork</p><ul><li>DD Form 4 - Enlistment/Reenlistment Document</li><li>DAF Form 901 - Reenlistment Eligibility Annex</li><li>Update member's records in personnel systems</li><li>Process any bonus or incentive paperwork</li></ul></div>
+          <div class="timeline-item"><h4>4. Ceremony & Oath Administration</h4><p>Conduct the official reenlistment ceremony</p><ul><li>Oath administered by commissioned officer</li><li>Witness signatures on DD Form 4</li><li>Photography/documentation (if desired)</li><li>Submit completed forms to MPF</li></ul></div>
+        </div>
+      </div>
+      <div class="card">
+        <h2>📋 Reenlistment Checklist</h2>
+        <div class="alert alert-info"><strong>Use this checklist to track reenlistment progress for each member</strong></div>
+        <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));">
+          <div><h3>Administrative Requirements</h3><ul style="list-style:none;padding:0;"><li><label><input type="checkbox" /> Eligibility verified</label></li><li><label><input type="checkbox" /> RE Code appropriate</label></li><li><label><input type="checkbox" /> No disqualifying factors</label></li><li><label><input type="checkbox" /> Security clearance current</label></li></ul></div>
+          <div><h3>Pre-Ceremony Requirements</h3><ul style="list-style:none;padding:0;"><li><label><input type="checkbox" /> UCMJ briefing completed</label></li><li><label><input type="checkbox" /> Informed Decision Seminar attended</label></li><li><label><input type="checkbox" /> Reenlistment date selected</label></li><li><label><input type="checkbox" /> Commissioned officer arranged</label></li><li><label><input type="checkbox" /> Ceremony location confirmed</label></li></ul></div>
+          <div><h3>Documentation</h3><ul style="list-style:none;padding:0;"><li><label><input type="checkbox" /> DD Form 4 prepared</label></li><li><label><input type="checkbox" /> DAF Form 901 completed</label></li><li><label><input type="checkbox" /> Bonus paperwork (if applicable)</label></li><li><label><input type="checkbox" /> Assignment preferences documented</label></li><li><label><input type="checkbox" /> All forms reviewed for accuracy</label></li></ul></div>
+          <div><h3>Post-Ceremony</h3><ul style="list-style:none;padding:0;"><li><label><input type="checkbox" /> Oath administered</label></li><li><label><input type="checkbox" /> Forms signed and witnessed</label></li><li><label><input type="checkbox" /> Documentation submitted to MPF</label></li><li><label><input type="checkbox" /> Personnel records updated</label></li><li><label><input type="checkbox" /> New DOS reflected in systems</label></li></ul></div>
+        </div>
+      </div>
     </section>
 
     <section id="extension" class="content-section">
-    <div class="card">
-    <h2>📅 Extension Process Hub</h2>
-    <div class="alert alert-info"><strong>Key Extension Limits:</strong> Max 48 months per enlistment (cannot be waived)</div>
-    <div class="expandable" onclick="this.classList.toggle('expanded');this.nextElementSibling.classList.toggle('show')">Service-Directed Reasons</div>
-    <div class="expandable-content"><div class="grid"><div><h4>Assignment/Deployment</h4><ul><li>Rule 12: PCS/TDY assignment retainability</li><li>Rule 13: Command sponsorship overseas</li><li>Rule 14: Overseas tour extension</li></ul></div><div><h4>Training/Education</h4><ul><li>Rule 15: Commission programs</li><li>Rule 16a: Training/formal school</li><li>Rule 16b: Retraining/OJT</li></ul></div><div><h4>Administrative</h4><ul><li>Rule 22: Investigation/legal action</li><li>Rule 23: SRP appeal processing</li><li>Rule 25: Citizenship/security clearance</li></ul></div><div><h4>Medical/Fitness</h4><ul><li>Rule 9: MEB/PEB processing</li><li>Rule 10: Medical care (pregnancy/injury)</li><li>Rule 18: Fitness improvement</li></ul></div></div></div>
-    <div class="expandable" onclick="this.classList.toggle('expanded');this.nextElementSibling.classList.toggle('show')">Approval Process</div>
-    <div class="expandable-content"><div class="timeline"><div class="timeline-item"><h4>1. Determine Need</h4><p>Per Table 6.2 of DAFI 36-2606</p></div><div class="timeline-item"><h4>2. Calculate Months</h4><p>Minimum needed for purpose</p></div><div class="timeline-item"><h4>3. DAF Form 1411</h4><p>With CC recommendation</p></div><div class="timeline-item"><h4>4. MPF Approval</h4><p>Chief MPF or delegate</p></div></div></div>
-    </div>
-    <div class="card">
-    <h2>📋 Extension Quick Calculator</h2>
-    <div class="grid">
-    <div class="form-group"><label for="extReason">Extension Reason</label><select class="form-control" id="extReason" onchange="window.calcExtension()"><option value="">Select Reason</option><option value="assignment">Assignment/Deployment</option><option value="training">Training/School</option><option value="medical">Medical Hold</option><option value="fitness">Fitness Improvement</option><option value="appeal">SRP Appeal</option><option value="citizenship">Citizenship</option></select></div>
-    <div class="form-group"><label for="currentDOS">Current DOS</label><input type="date" class="form-control" id="currentDOS" onchange="window.calcExtension()" /></div>
-    <div class="form-group"><label for="requiredDate">Required Date/Retainability</label><input type="date" class="form-control" id="requiredDate" onchange="window.calcExtension()" /></div>
-    <div id="extensionResult"></div>
-    </div>
-    </div>
+      <div class="card">
+        <h2>📅 Extension Process Hub</h2>
+        <div class="alert alert-info"><strong>Key Extension Limits:</strong> Max 48 months per enlistment (cannot be waived)</div>
+        <div class="expandable" onclick="this.classList.toggle('expanded');this.nextElementSibling.classList.toggle('show')">Service-Directed Reasons</div>
+        <div class="expandable-content"><div class="grid"><div><h4>Assignment/Deployment</h4><ul><li>Rule 12: PCS/TDY assignment retainability</li><li>Rule 13: Command sponsorship overseas</li><li>Rule 14: Overseas tour extension</li></ul></div><div><h4>Training/Education</h4><ul><li>Rule 15: Commission programs</li><li>Rule 16a: Training/formal school</li><li>Rule 16b: Retraining/OJT</li></ul></div><div><h4>Administrative</h4><ul><li>Rule 22: Investigation/legal action</li><li>Rule 23: SRP appeal processing</li><li>Rule 25: Citizenship/security clearance</li></ul></div><div><h4>Medical/Fitness</h4><ul><li>Rule 9: MEB/PEB processing</li><li>Rule 10: Medical care (pregnancy/injury)</li><li>Rule 18: Fitness improvement</li></ul></div></div></div>
+        <div class="expandable" onclick="this.classList.toggle('expanded');this.nextElementSibling.classList.toggle('show')">Approval Process</div>
+        <div class="expandable-content"><div class="timeline"><div class="timeline-item"><h4>1. Determine Need</h4><p>Per Table 6.2 of DAFI 36-2606</p></div><div class="timeline-item"><h4>2. Calculate Months</h4><p>Minimum needed for purpose</p></div><div class="timeline-item"><h4>3. DAF Form 1411</h4><p>With CC recommendation</p></div><div class="timeline-item"><h4>4. MPF Approval</h4><p>Chief MPF or delegate</p></div></div></div>
+      </div>
+      <div class="card">
+        <h2>📋 Extension Quick Calculator</h2>
+        <div class="grid">
+          <div class="form-group"><label for="extReason">Extension Reason</label><select class="form-control" id="extReason" onchange="window.calcExtension()"><option value="">Select Reason</option><option value="assignment">Assignment/Deployment</option><option value="training">Training/School</option><option value="medical">Medical Hold</option><option value="fitness">Fitness Improvement</option><option value="appeal">SRP Appeal</option><option value="citizenship">Citizenship</option></select></div>
+          <div class="form-group"><label for="currentDOS">Current DOS</label><input type="date" class="form-control" id="currentDOS" onchange="window.calcExtension()" /></div>
+          <div class="form-group"><label for="requiredDate">Required Date/Retainability</label><input type="date" class="form-control" id="requiredDate" onchange="window.calcExtension()" /></div>
+          <div id="extensionResult"></div>
+        </div>
+      </div>
     </section>
 
     <section id="forms" class="content-section">
-    <div class="card">
-    <h2>📋 Forms & Documents</h2>
-    <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
-    <button class="btn" data-form="DD4" onclick="window.openForm('DD4')">DD Form 4 — Enlistment/Reenlistment</button>
-    <button class="btn" data-form="DAF901" onclick="window.openForm('DAF901')">DAF Form 901 — Eligibility Annex</button>
-    <button class="btn" data-form="DAF418" onclick="window.openForm('DAF418')">DAF Form 418 — SRP Non-Selection</button>
-    <button class="btn" data-form="DAF1411" onclick="window.openForm('DAF1411')">DAF Form 1411 — Extension Request</button>
-    <button class="btn" data-form="DAF2096" onclick="window.openForm('DAF2096')">DAF Form 2096 — Classification/OJT</button>
-    <button class="btn" data-form="DAFI36-2606" onclick="window.openForm('DAFI36-2606')">DAFI 36-2606 — Guidance</button>
-    <button class="btn" data-form="AFI36-2110" onclick="window.openForm('AFI36-2110')">AFI 36-2110 — Assignments</button>
-    </div>
-    </div>
+      <div class="card">
+        <h2>📋 Forms & Documents</h2>
+        <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
+          <button class="btn" data-form="DD4" onclick="window.openForm('DD4')">DD Form 4 — Enlistment/Reenlistment</button>
+          <button class="btn" data-form="DAF901" onclick="window.openForm('DAF901')">DAF Form 901 — Eligibility Annex</button>
+          <button class="btn" data-form="DAF418" onclick="window.openForm('DAF418')">DAF Form 418 — SRP Non-Selection</button>
+          <button class="btn" data-form="DAF1411" onclick="window.openForm('DAF1411')">DAF Form 1411 — Extension Request</button>
+          <button class="btn" data-form="DAF2096" onclick="window.openForm('DAF2096')">DAF Form 2096 — Classification/OJT</button>
+          <button class="btn" data-form="DAFI36-2606" onclick="window.openForm('DAFI36-2606')">DAFI 36-2606 — Guidance</button>
+          <button class="btn" data-form="AFI36-2110" onclick="window.openForm('AFI36-2110')">AFI 36-2110 — Assignments</button>
+        </div>
+      </div>
     </section>
 
     <section id="resources" class="content-section">
-    <div class="grid">
-    <div class="card"><h3>RE Code Quick Reference</h3><div class="alert alert-info"><strong>Common RE Codes</strong></div><ul><li><strong>1J</strong> Eligible, elects separation</li><li><strong>1K</strong> Career, selected by CC</li><li><strong>1M</strong> Second Term/Career not considered</li><li><strong>1P</strong> Second Term selected</li><li><strong>1R</strong> First Term selected</li><li><strong>2X</strong> Not selected</li><li><strong>3C</strong> FTA/FTG not yet considered</li><li><strong>4J</strong> Unsatisfactory fitness</li><li><strong>4K</strong> Pending MEB/PEB</li></ul></div>
-    <div class="card"><h3>Extension Rules Quick Guide</h3><div class="alert alert-warning"><strong>Common Rules:</strong></div><ul><li>Rule 9 MEB/PEB</li><li>Rule 10 Medical</li><li>Rule 12 PCS/TDY retainability</li><li>Rule 13 Cmd sponsorship</li><li>Rule 14 Overseas tour</li><li>Rule 15 Commission programs</li><li>Rule 16a Training/school</li><li>Rule 18 Fitness</li><li>Rule 22 Investigation/legal</li></ul></div>
-    </div>
+      <div class="grid">
+        <div class="card"><h3>RE Code Quick Reference</h3><div class="alert alert-info"><strong>Common RE Codes</strong></div><ul><li><strong>1J</strong> Eligible, elects separation</li><li><strong>1K</strong> Career, selected by CC</li><li><strong>1M</strong> Second Term/Career not considered</li><li><strong>1P</strong> Second Term selected</li><li><strong>1R</strong> First Term selected</li><li><strong>2X</strong> Not selected</li><li><strong>3C</strong> FTA/FTG not yet considered</li><li><strong>4J</strong> Unsatisfactory fitness</li><li><strong>4K</strong> Pending MEB/PEB</li></ul></div>
+        <div class="card"><h3>Extension Rules Quick Guide</h3><div class="alert alert-warning"><strong>Common Rules:</strong></div><ul><li>Rule 9 MEB/PEB</li><li>Rule 10 Medical</li><li>Rule 12 PCS/TDY retainability</li><li>Rule 13 Cmd sponsorship</li><li>Rule 14 Overseas tour</li><li>Rule 15 Commission programs</li><li>Rule 16a Training/school</li><li>Rule 18 Fitness</li><li>Rule 22 Investigation/legal</li></ul></div>
+      </div>
     </section>
   </div>
 
   <!-- Modals -->
   <div class="modal-backdrop" id="modalBreakdown"><div class="modal-card"><h3 id="breakdownTitle">Member Breakdown</h3><div id="breakdownContent" style="margin-top:.5rem;"></div><div style="margin-top:.8rem;text-align:right;"><button class="btn btn-warning" onclick="window.closeModal('modalBreakdown')">Close</button></div></div></div>
   <div class="modal-backdrop" id="modalImportCsv"><div class="modal-card"><h3>Import Members from CSV</h3><div id="csvPreview" style="margin-top:.5rem;max-height:50vh;overflow:auto;border:1px solid #dee2e6;border-radius:8px;padding:.5rem;background:#f8f9fa"></div><div style="display:flex;gap:.5rem;justify-content:flex-end;margin-top:.8rem;"><button class="btn btn-warning" onclick="window.closeModal('modalImportCsv')">Cancel</button><button class="btn btn-success" id="btnConfirmImport" onclick="window.confirmCsvImport()" disabled>Import</button></div></div></div>
-  <div class="modal-backdrop" id="modalAddMember"><div class="modal-card" style="max-width:520px;"><h3 id="addEditTitle">Add New Member</h3><form id="addMemberForm" style="margin-top:.7rem;" onsubmit="window.submitMember(event)"><div class="form-group"><label for="memberName">Full Name</label><input type="text" class="form-control" id="memberName" required /></div><div class="form-group"><label for="memberRank">Rank</label><select class="form-control" id="memberRank" required><option value="">Select Rank</option><option value="AB">AB</option><option value="Amn">Amn</option><option value="A1C">A1C</option><option value="SrA">SrA</option><option value="SSgt">SSgt</option><option value="TSgt">TSgt</option><option value="MSgt">MSgt</option><option value="SMSgt">SMSgt</option><option value="CMSgt">CMSgt</option></select></div><div class="form-group"><label for="memberDOS">Date of Separation (DOS)</label><input type="date" class="form-control" id="memberDOS" required /></div><div class="form-group"><label for="memberDEROS">DEROS (DD-Mon-YY, e.g., 26-May-26)</label><input type="text" class="form-control" id="memberDEROS" placeholder="26-May-26" /></div><div class="form-group"><label for="memberAFSC">AFSC</label><input type="text" class="form-control" id="memberAFSC" placeholder="e.g., 3D1X2" /></div><div class="form-group"><label for="memberStatus">Status</label><select class="form-control" id="memberStatus" required><option value="">Select Status</option><option value="pending">Pending</option><option value="in_progress">In Progress</option><option value="awaiting_cc">Awaiting Commander Approval</option><option value="scheduled">Scheduled</option><option value="completed">Completed Reenlistment</option></select></div><div style="display:flex;gap:.5rem;justify-content:flex-end;margin-top:.7rem;"><button type="button" class="btn btn-warning" onclick="window.closeModal('modalAddMember')">Cancel</button><button type="submit" class="btn btn-success">Save</button></div></form></div></div>
+  <div class="modal-backdrop" id="modalAddMember"><div class="modal-card" style="max-width:520px;"><h3 id="addEditTitle">Add New Member</h3><form id="addMemberForm" style="margin-top:.7rem;" onsubmit="window.submitMember(event)"><div class="form-group"><label for="memberName">Full Name</label><input type="text" class="form-control" id="memberName" required /></div><div class="form-group"><label for="memberRank">Rank</label><select class="form-control" id="memberRank" required><option value="">Select Rank</option><option value="AB">AB</option><option value="Amn">Amn</option><option value="A1C">A1C</option><option value="SrA">SrA</option><option value="SSgt">SSgt</option><option value="TSgt">TSgt</option><option value="MSgt">MSgt</option><option value="SMSgt">SMSgt</option><option value="CMSgt">CMSgt</option></select></div><div class="form-group"><label for="memberDOS">Date of Separation (DOS)</label><input type="date" class="form-control" id="memberDOS" required /></div><div class="form-group"><label for="memberDEROS">DEROS (YYYY-MM-DD or DD-Mon-YY)</label><input type="text" class="form-control" id="memberDEROS" placeholder="e.g., 2026-05-26 or 26-May-26" /></div><div class="form-group"><label for="memberAFSC">AFSC</label><input type="text" class="form-control" id="memberAFSC" placeholder="e.g., 3D1X2" /></div><div class="form-group"><label for="memberStatus">Status</label><select class="form-control" id="memberStatus" required><option value="">Select Status</option><option value="pending">Pending</option><option value="in_progress">In Progress</option><option value="awaiting_cc">Awaiting Commander Approval</option><option value="scheduled">Scheduled</option><option value="eligible">Eligible</option><option value="extension">Needs Extension</option><option value="separating">Separating</option><option value="completed">Completed Reenlistment</option></select></div><div style="display:flex;gap:.5rem;justify-content:flex-end;margin-top:.7rem;"><button type="button" class="btn btn-warning" onclick="window.closeModal('modalAddMember')">Cancel</button><button type="submit" class="btn btn-success">Save</button></div></form></div></div>
   <div class="modal-backdrop" id="modalFormInfo"><div class="modal-card"><h3 id="formTitle"></h3><div id="formContent" style="margin-top:.5rem;"></div><div style="margin-top:.8rem;text-align:right;"><button class="btn btn-warning" onclick="window.closeModal('modalFormInfo')">Close</button></div></div></div>
 
   <script>
     (function(){
-    // --- DOM HELPER ---
-    const $ = s => document.querySelector(s);
-    const $$ = s => Array.from(document.querySelectorAll(s));
+      // --- DOM HELPER ---
+      const $ = s => document.querySelector(s);
+      const $$ = s => Array.from(document.querySelectorAll(s));
 
-    // --- STATE MANAGEMENT ---
-    let members = [];
-    let editingId = null;
-    let csvImportData = [];
-    const STORAGE_KEY = 'usaf_members_v2';
+      // --- STATE MANAGEMENT ---
+      let members = [];
+      let editingId = null;
+      let csvImportData = [];
+      const STORAGE_KEY = 'usaf_members_v2';
 
-    // --- MODAL & NAVIGATION ---
-    function showModal(id) { $(`#${id}`).classList.add('show'); }
-    function closeModal(id) { $(`#${id}`).classList.remove('show'); }
-    window.closeModal = closeModal;
-    window.showModal = showModal;
+      // --- MODAL & NAVIGATION ---
+      function showModal(id) { $(`#${id}`).classList.add('show'); }
+      function closeModal(id) { $(`#${id}`).classList.remove('show'); }
+      window.closeModal = closeModal;
+      window.showModal = showModal;
 
-    window.setActiveSection = function(id) {
-    $$('.content-section').forEach(s => s.classList.remove('active'));
-    $(`#${id}`).classList.add('active');
-    $$('#mainNav .nav-btn').forEach(b => b.classList.toggle('active', b.dataset.section === id));
-    };
+      window.setActiveSection = function(id) {
+        $$('.content-section').forEach(s => s.classList.remove('active'));
+        $(`#${id}`).classList.add('active');
+        $$('#mainNav .nav-btn').forEach(b => b.classList.toggle('active', b.dataset.section === id));
+      };
 
-    // --- NOTIFICATIONS ---
-    function toast(msg, type = 'info') {
-    const d = document.createElement('div');
-    d.className = `alert alert-${type}`;
-    Object.assign(d.style, { position: 'fixed', top: '20px', right: '20px', zIndex: 2000, minWidth: '260px', boxShadow: '0 4px 12px rgba(0,0,0,0.15)' });
-    d.innerHTML = `<strong>${msg}</strong> <button style="float:right;background:none;border:none;font-size:18px;cursor:pointer;line-height:1;opacity:0.7" aria-label="Close" onclick="this.parentElement.remove()">×</button>`;
-    document.body.appendChild(d);
-    setTimeout(() => d.remove(), 4500);
-    }
-
-    // --- DATA PERSISTENCE ---
-    function save() {
-    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(members)); }
-    catch(e) { console.error("Failed to save to localStorage", e); }
-    }
-    function load() {
-    // Migrate legacy completed flag to status on load
-    function migrateLegacyCompletedFlag() {
-      members.forEach(m => {
-        if (m && m.completedReenlistment === true && m.status !== 'completed') {
-          m.status = 'completed';
-          delete m.completedReenlistment;
-        }
-      });
-    }
-    try {
-    const raw = localStorage.getItem(STORAGE_KEY);
-    members = raw ? JSON.parse(raw) : [];
-    } catch (e) {
-    members = [];
-    console.error("Failed to load from localStorage", e);
-    }
-    }
-
-    // --- RENDERING & FORMATTING ---
-    function formatDisplayName(nameStr) {
-    if (!nameStr || !nameStr.includes(',')) { return nameStr; }
-    const parts = nameStr.split(',');
-    if (parts.length < 2) { return nameStr; }
-    const lastName = parts[0].trim();
-    const firstName = parts.slice(1).join(',').trim();
-    return `${firstName} ${lastName}`;
-    }
-    function statusClass(s) {
-    if (s === 'eligible') return 'status-eligible';
-    if (s === 'separating') return 'status-ineligible';
-    return 'status-warning';
-    }
-    function normalizeGrade(g) {
-      const map = { SSG: 'SSgt', TSG: 'TSgt', MSG: 'MSgt' };
-      const key = g?.toString()?.trim()?.toUpperCase();
-      return map[key] || g;
-    }
-
-    function itemHTML(m) {
-    const displayName = formatDisplayName(m.name);
-    return `<div class="member-item">
-    <div class="member-info">
-    <h4><span class="status-indicator ${statusClass(m.status)}"></span>${normalizeGrade(m.rank)} ${displayName}</h4>
-    <small>
-      AFSC: ${m.afsc || '—'} | DOS: ${m.dos} | DEROS: ${m.deros || '—'}
-      | Retainability: ${m.retainabilityMonths ?? '—'} mo
-      | Assignment: ${
-        m.assignmentEligible === true ? 'Eligible' :
-        m.assignmentEligible === false ? 'Needs Retainability' : '—'
+      // --- NOTIFICATIONS ---
+      function toast(msg, type = 'info') {
+        const d = document.createElement('div');
+        d.className = `alert alert-${type}`;
+        Object.assign(d.style, { position: 'fixed', top: '20px', right: '20px', zIndex: 2000, minWidth: '260px', boxShadow: '0 4px 12px rgba(0,0,0,0.15)' });
+        d.innerHTML = `<strong>${msg}</strong> <button style="float:right;background:none;border:none;font-size:18px;cursor:pointer;line-height:1;opacity:0.7" aria-label="Close" onclick="this.parentElement.remove()">×</button>`;
+        document.body.appendChild(d);
+        setTimeout(() => d.remove(), 4500);
       }
-      | Status: ${m.status}
-    </small>
-    </div>
-    <div class="member-actions">
-    <button class="btn" onclick="window.editMember(${m.id})">Edit</button>
-    <button class="btn btn-danger" onclick="window.deleteMember(${m.id})">Delete</button>
-    </div>
-    </div>`;
-    }
-    function render() {
-    const now = new Date();
-    const ninetyDaysFromNow = new Date(now.getTime() + 90 * 24 * 60 * 60 * 1000);
-    
-    $('#totalMembers').textContent = members.length;
-    $('#upcomingActions').textContent = members.filter(m => { const d = new Date(m.dos); return d <= ninetyDaysFromNow && d > now && m.completedReenlistment !== true; }).length;
-    $('#completedActions').textContent = members.filter(m => m.status === 'eligible').length; // unchanged tile meaning
-    $('#completedReenCount').textContent = members.filter(m => m.status === 'completed').length; // new tile already counts Completed Reenlistment
-    $('#pendingReview').textContent = members.filter(m => m.status === 'pending' || m.status === 'extension').length;
 
-    renderUpcoming();
-    renderList(members.filter(m => m.status !== 'completed'));
-    $('#memberSearch').dispatchEvent(new Event('input')); // Re-apply search filter
-    }
-    function renderUpcoming() {
-    const container = $('#upcomingDeadlines');
-    const now = new Date();
-    const ninetyDaysFromNow = new Date(now.getTime() + 90 * 24 * 60 * 60 * 1000);
-    const upcoming = members.filter(m => { const d = new Date(m.dos); return d <= ninetyDaysFromNow && d > now; }).sort((a,b) => new Date(a.dos) - new Date(b.dos));
+      // --- DATA PERSISTENCE ---
+      function save() {
+        try { localStorage.setItem(STORAGE_KEY, JSON.stringify(members)); }
+        catch(e) { console.error("Failed to save to localStorage", e); }
+      }
+      function load() {
+        try {
+          const raw = localStorage.getItem(STORAGE_KEY);
+          let loadedMembers = raw ? JSON.parse(raw) : [];
+          
+          // One-time migration from old `completedReenlistment` flag to new `status` field
+          let migrated = false;
+          loadedMembers.forEach(m => {
+            if (m && m.completedReenlistment === true && m.status !== 'completed') {
+              m.status = 'completed';
+              delete m.completedReenlistment;
+              migrated = true;
+            }
+          });
+          
+          members = loadedMembers;
 
-    if (!upcoming.length) {
-    container.innerHTML = '<div class="alert alert-info"><strong>No upcoming deadlines in next 90 days.</strong></div>';
-    return;
-    }
-    container.innerHTML = upcoming.map(m => {
-    const d = new Date(m.dos);
-    const displayName = formatDisplayName(m.name);
-    const days = Math.ceil((d - now) / (1000 * 60 * 60 * 24));
-    const cls = days <= 30 ? 'alert-danger' : days <= 60 ? 'alert-warning' : 'alert-info';
-    return `<div class="alert ${cls}"><strong>${normalizeGrade(m.rank)} ${displayName}</strong><br/>DOS: ${m.dos} (${days} days)<br/>Status: ${m.status}</div>`;
-    }).join('');
-    }
-    function renderList(list) {
-    const container = $('#memberList');
-    if (!members.length) {
-    container.innerHTML = '<div class="alert alert-info"><strong>No members currently tracked.</strong><br/>Use the "Add New Member" button to start tracking.</div>';
-    return;
-    }
-    if (!list.length) {
-    container.innerHTML = '<div class="alert alert-warning"><strong>No members match your search.</strong></div>';
-    return;
-    }
-    container.innerHTML = list.map(itemHTML).join('');
-    // Add quick filter controls if not present
-    if (!document.getElementById('statusFilterBar')) {
-      const filterBar = document.createElement('div');
-      filterBar.id = 'statusFilterBar';
-      filterBar.style.margin = '0.6rem 0 0.2rem 0';
-      filterBar.innerHTML = `
-        <div style="display:flex;gap:.4rem;flex-wrap:wrap;">
-          <button class="btn" id="filterAll">All</button>
-          <button class="btn" id="filterCompletedReen">Completed Reenlistment</button>
-          <button class="btn" id="filterEligible">Eligible</button>
-          <button class="btn" id="filterInProgress">In Progress</button>
-          <button class="btn" id="filterAwaitingCC">Awaiting Commander's Approval</button>
-          <button class="btn" id="filterPending">Pending/Needs Extension</button>
-          <button class="btn" id="filterSeparating">Separating</button>
+          if (migrated) {
+            toast('Data model updated.', 'info');
+            save(); // Save immediately after migration to prevent re-running
+          }
+        } catch (e) {
+          members = [];
+          console.error("Failed to load from localStorage", e);
+        }
+      }
+
+      // --- RENDERING & FORMATTING ---
+      function formatDisplayName(nameStr) {
+        if (!nameStr || !nameStr.includes(',')) { return nameStr; }
+        const parts = nameStr.split(',');
+        if (parts.length < 2) { return nameStr; }
+        const lastName = parts[0].trim();
+        const firstName = parts.slice(1).join(',').trim();
+        return `${firstName} ${lastName}`;
+      }
+      function statusClass(s) {
+        if (s === 'eligible' || s === 'completed') return 'status-eligible';
+        if (s === 'separating') return 'status-ineligible';
+        return 'status-warning';
+      }
+      function normalizeGrade(g) {
+        const map = { SSG: 'SSgt', TSG: 'TSgt', MSG: 'MSgt' };
+        const key = g?.toString()?.trim()?.toUpperCase();
+        return map[key] || g;
+      }
+
+      function itemHTML(m) {
+        const displayName = formatDisplayName(m.name);
+        return `<div class="member-item">
+          <div class="member-info">
+            <h4><span class="status-indicator ${statusClass(m.status)}"></span>${normalizeGrade(m.rank)} ${displayName}</h4>
+            <small>
+              AFSC: ${m.afsc || '—'} | DOS: ${m.dos} | DEROS: ${m.deros || '—'}
+              | Retainability: ${m.retainabilityMonths ?? '—'} mo
+              | Assignment: ${
+                m.assignmentEligible === true ? 'Eligible' :
+                m.assignmentEligible === false ? 'Needs Retainability' : '—'
+              }
+              | Status: ${m.status}
+            </small>
+          </div>
+          <div class="member-actions">
+            <button class="btn" onclick="window.editMember(${m.id})">Edit</button>
+            <button class="btn btn-danger" onclick="window.deleteMember(${m.id})">Delete</button>
+          </div>
         </div>`;
-      container.parentElement.insertBefore(filterBar, container);
-      document.getElementById('filterAll').onclick = () => renderList(members);
-      document.getElementById('filterCompletedReen').onclick = () => renderList(members.filter(m => m.status === 'completed'));
-      document.getElementById('filterEligible').onclick = () => renderList(members.filter(m => m.status === 'eligible'));
-      document.getElementById('filterPending').onclick = () => renderList(members.filter(m => m.status === 'pending' || m.status === 'extension'));
-      document.getElementById('filterSeparating').onclick = () => renderList(members.filter(m => m.status === 'separating'));
-    }
-    }
+      }
+      function render() {
+        const now = new Date();
+        const ninetyDaysFromNow = new Date(now.getTime() + 90 * 24 * 60 * 60 * 1000);
+        
+        $('#totalMembers').textContent = members.length;
+        $('#upcomingActions').textContent = members.filter(m => { const d = new Date(m.dos); return d <= ninetyDaysFromNow && d > now && m.status !== 'completed'; }).length;
+        $('#eligibleCount').textContent = members.filter(m => m.status === 'eligible').length;
+        $('#completedReenCount').textContent = members.filter(m => m.status === 'completed').length;
+        $('#pendingReview').textContent = members.filter(m => m.status === 'pending' || m.status === 'extension' || m.status === 'in_progress' || m.status === 'awaiting_cc').length;
 
+        renderUpcoming();
+        renderList(members); // Render full list initially
+        $('#memberSearch').dispatchEvent(new Event('input')); // Re-apply search filter if any
+      }
+      function renderUpcoming() {
+        const container = $('#upcomingDeadlines');
+        const now = new Date();
+        const ninetyDaysFromNow = new Date(now.getTime() + 90 * 24 * 60 * 60 * 1000);
+        const upcoming = members.filter(m => { const d = new Date(m.dos); return d <= ninetyDaysFromNow && d > now && m.status !== 'completed'; }).sort((a,b) => new Date(a.dos) - new Date(b.dos));
+
+        if (!upcoming.length) {
+          container.innerHTML = '<div class="alert alert-info"><strong>No upcoming deadlines in next 90 days.</strong></div>';
+          return;
+        }
+        container.innerHTML = upcoming.map(m => {
+          const d = new Date(m.dos);
+          const displayName = formatDisplayName(m.name);
+          const days = Math.ceil((d - now) / (1000 * 60 * 60 * 24));
+          const cls = days <= 30 ? 'alert-danger' : days <= 60 ? 'alert-warning' : 'alert-info';
+          return `<div class="alert ${cls}"><strong>${normalizeGrade(m.rank)} ${displayName}</strong><br/>DOS: ${m.dos} (${days} days)<br/>Status: ${m.status}</div>`;
+        }).join('');
+      }
+      function renderList(list) {
+        const container = $('#memberList');
+        if (!members.length) {
+          container.innerHTML = '<div class="alert alert-info"><strong>No members currently tracked.</strong><br/>Use the "Add New Member" button to start tracking.</div>';
+          return;
+        }
+        
+        // Add quick filter controls if not present
+        if (!document.getElementById('statusFilterBar')) {
+          const filterBar = document.createElement('div');
+          filterBar.id = 'statusFilterBar';
+          filterBar.style.margin = '0.6rem 0 0.2rem 0';
+          filterBar.innerHTML = `
+            <div style="display:flex;gap:.4rem;flex-wrap:wrap;">
+              <button class="btn" id="filterAll">All</button>
+              <button class="btn" id="filterCompletedReen">Completed Reenlistment</button>
+              <button class="btn" id="filterEligible">Eligible</button>
+              <button class="btn" id="filterInProgress">In Progress</button>
+              <button class="btn" id="filterAwaitingCC">Awaiting CC Approval</button>
+              <button class="btn" id="filterPending">Pending/Needs Extension</button>
+              <button class="btn" id="filterSeparating">Separating</button>
+            </div>`;
+          container.parentElement.insertBefore(filterBar, container);
+          document.getElementById('filterAll').onclick = () => renderList(members);
+          document.getElementById('filterCompletedReen').onclick = () => renderList(members.filter(m => m.status === 'completed'));
+          document.getElementById('filterEligible').onclick = () => renderList(members.filter(m => m.status === 'eligible'));
+          document.getElementById('filterInProgress').onclick = () => renderList(members.filter(m => m.status === 'in_progress'));
+          document.getElementById('filterAwaitingCC').onclick = () => renderList(members.filter(m => m.status === 'awaiting_cc'));
+          document.getElementById('filterPending').onclick = () => renderList(members.filter(m => m.status === 'pending' || m.status === 'extension'));
+          document.getElementById('filterSeparating').onclick = () => renderList(members.filter(m => m.status === 'separating'));
+        }
+
+        if (!list.length) {
+          container.innerHTML = '<div class="alert alert-warning"><strong>No members match your filter.</strong></div>';
+          return;
+        }
+        container.innerHTML = list.map(itemHTML).join('');
+      }
 
       // --- FORM UTILITIES ---
       function setSelectValueOrDefault(selectEl, value, fallback) {
         if (!selectEl) return;
-      document.getElementById('filterInProgress').onclick = () => renderList(members.filter(m => m.status === 'in_progress'));
-      document.getElementById('filterAwaitingCC').onclick = () => renderList(members.filter(m => m.status === 'awaiting_cc'));
-
         const options = Array.from(selectEl.options).map(o => o.value);
         if (options.includes(value)) {
           selectEl.value = value;
@@ -413,412 +421,403 @@
         }
       }
 
-    // --- DEROS RETAINABILITY HELPERS ---
-    const RETAINABILITY_REQUIRED_MONTHS = 12; // configurable
+      // --- DEROS RETAINABILITY HELPERS ---
+      const RETAINABILITY_REQUIRED_MONTHS = 12; // configurable
 
-    function diffFullMonths(laterDate, earlierDate) {
-      if (!laterDate || !earlierDate) return null;
-      const d1 = new Date(earlierDate);
-      const d2 = new Date(laterDate);
-      if (isNaN(d1) || isNaN(d2)) return null;
-      let months = (d2.getFullYear() - d1.getFullYear()) * 12 + (d2.getMonth() - d1.getMonth());
-      if (d2.getDate() < d1.getDate()) months -= 1; // count full months only
-      return Math.max(0, months);
-    }
+      function diffFullMonths(laterDate, earlierDate) {
+        if (!laterDate || !earlierDate) return null;
+        const d1 = new Date(earlierDate);
+        const d2 = new Date(laterDate);
+        if (isNaN(d1) || isNaN(d2)) return null;
+        let months = (d2.getFullYear() - d1.getFullYear()) * 12 + (d2.getMonth() - d1.getMonth());
+        if (d2.getDate() < d1.getDate()) months -= 1; // count full months only
+        return Math.max(0, months);
+      }
 
-    function computeDEROSDerivedFields(member) {
-      const deros = member.deros;
-      const dos = member.dos;
-      const retainabilityMonths = diffFullMonths(dos, deros);
-      member.retainabilityMonths = retainabilityMonths;
-      if (retainabilityMonths === null) {
-        member.retainabilityShortfallMonths = null;
-        member.assignmentEligible = null;
-        member.recommendedExtensionMonths = null;
+      function computeDEROSDerivedFields(member) {
+        const deros = member.deros;
+        const dos = member.dos;
+        const retainabilityMonths = diffFullMonths(dos, deros);
+        member.retainabilityMonths = retainabilityMonths;
+        if (retainabilityMonths === null) {
+          member.retainabilityShortfallMonths = null;
+          member.assignmentEligible = null;
+          member.recommendedExtensionMonths = null;
+          return member;
+        }
+        const shortfall = Math.max(0, RETAINABILITY_REQUIRED_MONTHS - retainabilityMonths);
+        member.retainabilityShortfallMonths = shortfall;
+        member.assignmentEligible = shortfall === 0;
+        member.recommendedExtensionMonths = shortfall;
         return member;
       }
-      const shortfall = Math.max(0, RETAINABILITY_REQUIRED_MONTHS - retainabilityMonths);
-      member.retainabilityShortfallMonths = shortfall;
-      member.assignmentEligible = shortfall === 0;
-      member.recommendedExtensionMonths = shortfall;
-      return member;
-    }
 
-    function computeDEROSDerivedFieldsForAllMembers(membersArray) {
-      if (!Array.isArray(membersArray)) return;
-      membersArray.forEach(m => computeDEROSDerivedFields(m));
-    }
-
-    // --- CSV IMPORT ---
-    function parseDosDate(dosString) {
-    if (!dosString) return null;
-    // Handles YYYY-MM-DD format
-    if (dosString.match(/^\d{4}-\d{2}-\d{2}$/)) {
-    return dosString;
-    }
-    // Handles DD-Mon-YY format (e.g., 26-May-26)
-    const parts = dosString.split('-');
-    if (parts.length !== 3) return null;
-
-    const [day, monthStr, yearStr] = parts;
-    const year = parseInt(yearStr, 10);
-    const fullYear = year >= 70 ? 1900 + year : 2000 + year; // Guesses the century
-
-    const monthMap = {
-    'Jan': '01', 'Feb': '02', 'Mar': '03', 'Apr': '04', 'May': '05', 'Jun': '06',
-    'Jul': '07', 'Aug': '08', 'Sep': '09', 'Oct': '10', 'Nov': '11', 'Dec': '12'
-    };
-    const month = monthMap[monthStr];
-
-    if (!month || isNaN(parseInt(day, 10)) || isNaN(fullYear)) return null;
-
-    return `${fullYear}-${month.padStart(2, '0')}-${String(day).padStart(2, '0')}`;
-    }
-    window.pickCsv = function() { $('#csvFileInput').click(); };
-    function handleCsvFile(event) {
-    const file = event.target.files[0];
-    if (!file) return;
-    const reader = new FileReader();
-    reader.onload = function(e) {
-    const text = e.target.result;
-    const rows = text.split('\n').filter(row => row.trim() !== '');
-    if (rows.length < 2) { toast('CSV file is empty or has no data rows.', 'danger'); return; }
-
-    // Detect delimiter (tab, pipe, or comma) and scan for the real header row (skip preface like "As of: ...")
-    const delimiter = text.includes('\t') ? '\t' : (text.includes('|') ? '|' : ',');
-    // Normalize helper for header cells
-    function normHeader(s){
-      return s.toLowerCase().replace(/\uFEFF/g,'').replace(/^\"|\"$/g,'').replace(/[^a-z0-9]+/g,' ').trim().replace(/\s+/g,' ');
-    }
-    let headerCellsRaw = null; let headerCells = null; let headerRowIdx = -1;
-    for (let i = 0; i < rows.length; i++) {
-      const raw = rows[i].split(delimiter);
-      const cells = raw.map(normHeader);
-      const hasName = cells.some(h => h === 'full name' || h === 'name' || (h.includes('name') && !h.includes('supv') && !h.includes('supervisor') && !h.includes('spouse') && !h.includes('home')));
-      const hasRank = cells.some(h => h.includes('grade') || h === 'rank' || h.includes('pay grade'));
-      const hasDos = cells.some(h => h === 'dos' || h.includes('ets') || h.includes('separation'));
-      if ((hasName && hasRank) || (hasName && hasDos) || (hasRank && hasDos)) {
-        headerCellsRaw = raw; headerCells = cells; headerRowIdx = i; break;
+      function computeDEROSDerivedFieldsForAllMembers(membersArray) {
+        if (!Array.isArray(membersArray)) return;
+        membersArray.forEach(m => computeDEROSDerivedFields(m));
       }
-    }
-    if (!headerCells) {
-      toast(`CSV headers do not look correct. Expecting FULL_NAME/NAME, GRADE/RANK, DOS. Parsed delimiter: ${delimiter}. Example lines: ${rows.slice(0,3).join(' || ')}`, 'danger');
-      return;
-    }
-    // drop all rows up to and including the header row
-    rows.splice(0, headerRowIdx + 1);
-    const colIndex = {
-      name: headerCells.findIndex(h => h === 'full name' || h === 'name' || (h.includes('name') && !h.includes('supv') && !h.includes('supervisor') && !h.includes('spouse') && !h.includes('home'))),
-      rank: headerCells.findIndex(h => h.includes('grade') || h === 'rank' || h.includes('pay grade')),
-      afsc: headerCells.findIndex(h => h.includes('dafsc') || h.includes('afsc')),
-      dos: headerCells.findIndex(h => h === 'dos' || h.includes('ets') || h.includes('separation')),
-      deros: headerCells.findIndex(h => h === 'deros' || h.includes('return from overseas'))
-    };
-    if (colIndex.name === -1 || colIndex.rank === -1 || colIndex.dos === -1) {
-      toast(`CSV headers do not look correct. Missing FULL_NAME/NAME, GRADE/RANK, or DOS. Parsed header: [${headerCells.join(', ')}]`, 'danger');
-      return;
-    }
 
-    function splitCsvLine(line, delimiter) {
-      const out = []; let current = ''; let inQuotes = false;
-      for (let i = 0; i < line.length; i++) {
-        const ch = line[i];
-        if (ch === '"' && line[i + 1] === '"') { current += '"'; i++; continue; }
-        if (ch === '"') { inQuotes = !inQuotes; continue; }
-        if (ch === delimiter && !inQuotes) { out.push(current.trim()); current = ''; continue; }
-        current += ch;
-      }
-      out.push(current.trim());
-      return out.map(v => v.replace(/^"|"$/g, ''));
-    }
+      // --- CSV IMPORT ---
+      function parseDosDate(dosString) {
+        if (!dosString) return null;
+        // Handles YYYY-MM-DD format
+        if (dosString.match(/^\d{4}-\d{2}-\d{2}$/)) {
+          return dosString;
+        }
+        // Handles DD-Mon-YY format (e.g., 26-May-26)
+        const parts = dosString.split('-');
+        if (parts.length !== 3) return null;
 
-    csvImportData = rows.map(row => {
-      const values = splitCsvLine(row, delimiter);
-      return {
-        name: values[colIndex.name] ?? '',
-        rank: values[colIndex.rank] ?? '',
-        afsc: colIndex.afsc !== -1 ? (values[colIndex.afsc] ?? '') : '',
-        dos: values[colIndex.dos] ?? '',
-        deros: colIndex.deros !== -1 ? (values[colIndex.deros] ?? '') : '',
-        status: 'pending'
-      };
-    }).filter(d => d && d.name && d.rank && d.dos);
+        const [day, monthStr, yearStr] = parts;
+        const year = parseInt(yearStr, 10);
+        const fullYear = year >= 70 ? 1900 + year : 2000 + year; // Guesses the century
 
-    if (csvImportData.length === 0) { toast('Could not parse any valid member data from the file.', 'danger'); return; }
-
-    const previewEl = $('#csvPreview');
-    const displayHeaders = ['Name', 'Rank', 'AFSC', 'DOS', 'DEROS', 'Status'];
-    previewEl.innerHTML =
-      `<table class="form-control" style="width:100%; text-align: left;">
-        <thead><tr>${displayHeaders.map(h=>`<th>${h}</th>`).join('')}</tr></thead>
-        <tbody>${csvImportData.map(d=>`<tr>
-          <td>${d.name}</td><td>${normalizeGrade(d.rank)}</td><td>${d.afsc}</td><td>${d.dos}</td><td>${d.deros || ''}</td><td>${d.status}</td>
-        </tr>`).join('')}</tbody>
-       </table>`;
-    $('#btnConfirmImport').disabled = false;
-    showModal('modalImportCsv');
-    };
-    reader.readAsText(file);
-    event.target.value = '';
-    }
-    window.confirmCsvImport = function() {
-    let importedCount = 0;
-    csvImportData.forEach(item => {
-      const parsedDos = parseDosDate(item.dos);
-      const parsedDeros = item.deros ? parseDosDate(item.deros) : null; // supports 26-May-26
-      if (item.name && item.rank && parsedDos) {
-        const member = {
-          name: item.name,
-          rank: item.rank,
-          dos: parsedDos,
-          deros: parsedDeros || null,
-          afsc: item.afsc || 'N/A',
-          status: item.status || 'pending',
-          id: Date.now() + Math.random()
+        const monthMap = {
+          'Jan': '01', 'Feb': '02', 'Mar': '03', 'Apr': '04', 'May': '05', 'Jun': '06',
+          'Jul': '07', 'Aug': '08', 'Sep': '09', 'Oct': '10', 'Nov': '11', 'Dec': '12'
         };
-        computeDEROSDerivedFields(member);
-        members.push(member);
-        importedCount++;
+        const month = monthMap[monthStr];
+
+        if (!month || isNaN(parseInt(day, 10)) || isNaN(fullYear)) return null;
+
+        return `${fullYear}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
       }
-    });
-    computeDEROSDerivedFieldsForAllMembers(members);
-    save();
-    render();
-    closeModal('modalImportCsv');
-    if (importedCount > 0) {
-      toast(`${importedCount} members imported successfully!`, 'success');
-    } else {
-      toast('No valid members could be imported. Check data format.', 'danger');
-    }
-    csvImportData = [];
-    $('#btnConfirmImport').disabled = true;
-    };
+      window.pickCsv = function() { $('#csvFileInput').click(); };
+      function handleCsvFile(event) {
+        const file = event.target.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          const text = e.target.result;
+          const rows = text.split('\n').filter(row => row.trim() !== '');
+          if (rows.length < 2) { toast('CSV file is empty or has no data rows.', 'danger'); return; }
 
-    // --- TOOLS & CALCULATORS ---
-    window.checkEligibility = function() {
-    const resultsEl = $('#eligibilityResults');
-    const issues = [];
-    const warnings = [];
-    
-    // Disqualifying factors
-    if ($('#uif').checked) issues.push("Has a UIF.");
-    if ($('#lostTime').checked) issues.push("Has 5 or more days of lost time.");
-    if ($('#fitnessFailure').checked) issues.push("Is a current fitness failure.");
-    if ($('#controlRoster').checked) issues.push("Is on the Control Roster.");
-    if ($('#pendingLegal').checked) issues.push("Has pending legal action.");
-    const reCode = $('#reCode').value;
-    if (reCode.startsWith('2') || reCode.startsWith('4')) issues.push(`RE Code (${reCode}) indicates ineligibility.`);
-    
-    // Warnings
-    if ($('#nonUsCitizen').checked) warnings.push("Is a non-US Citizen (may require additional processing).");
-    
-    // Reenlistment Window Check
-    const memberType = $('#memberType').value;
-    const enlistmentLength = parseInt($('#enlistmentLength').value, 10);
-    const monthsServed = parseInt($('#monthsServed').value, 10);
-    if (memberType === 'fta' || memberType === 'ftg') {
-    if (enlistmentLength === 4 && (monthsServed < 35 || monthsServed > 47)) {
-    warnings.push("FTA on a 4-year enlistment is outside the standard reenlistment window (35-47 months).");
-    } else if (enlistmentLength === 6 && (monthsServed < 59 || monthsServed > 71)) {
-    warnings.push("FTA on a 6-year enlistment is outside the standard reenlistment window (59-71 months).");
-    }
-    }
+          const delimiter = text.includes('\t') ? '\t' : (text.includes('|') ? '|' : ',');
+          function normHeader(s){
+            return s.toLowerCase().replace(/\uFEFF/g,'').replace(/^\"|\"$/g,'').replace(/[^a-z0-9]+/g,' ').trim().replace(/\s+/g,' ');
+          }
+          let headerCells = null; let headerRowIdx = -1;
+          for (let i = 0; i < rows.length; i++) {
+            const cells = rows[i].split(delimiter).map(normHeader);
+            const hasName = cells.some(h => h === 'full name' || h === 'name' || (h.includes('name') && !h.includes('supv') && !h.includes('supervisor') && !h.includes('spouse') && !h.includes('home')));
+            const hasRank = cells.some(h => h.includes('grade') || h === 'rank' || h.includes('pay grade'));
+            const hasDos = cells.some(h => h === 'dos' || h.includes('ets') || h.includes('separation'));
+            if ((hasName && hasRank) || (hasName && hasDos) || (hasRank && hasDos)) {
+              headerCells = cells; headerRowIdx = i; break;
+            }
+          }
+          if (!headerCells) {
+            toast(`CSV headers do not look correct. Expecting FULL_NAME/NAME, GRADE/RANK, DOS.`, 'danger');
+            return;
+          }
+          rows.splice(0, headerRowIdx + 1);
+          const colIndex = {
+            name: headerCells.findIndex(h => h === 'full name' || h === 'name' || (h.includes('name') && !h.includes('supv') && !h.includes('supervisor') && !h.includes('spouse') && !h.includes('home'))),
+            rank: headerCells.findIndex(h => h.includes('grade') || h === 'rank' || h.includes('pay grade')),
+            afsc: headerCells.findIndex(h => h.includes('dafsc') || h.includes('afsc')),
+            dos: headerCells.findIndex(h => h === 'dos' || h.includes('ets') || h.includes('separation')),
+            deros: headerCells.findIndex(h => h === 'deros' || h.includes('return from overseas'))
+          };
+          if (colIndex.name === -1 || colIndex.rank === -1 || colIndex.dos === -1) {
+            toast(`CSV headers do not look correct. Missing FULL_NAME/NAME, GRADE/RANK, or DOS. Parsed header: [${headerCells.join(', ')}]`, 'danger');
+            return;
+          }
 
-    let html = '';
-    if (issues.length > 0) {
-    html += `<div class="alert alert-danger"><h4>Ineligible for Reenlistment</h4><p>The following disqualifying factors are present:</p><ul>${issues.map(i => `<li>${i}</li>`).join('')}</ul></div>`;
-    } else {
-    html += `<div class="alert alert-success"><h4>Eligible for Reenlistment</h4><p>No immediate disqualifying factors were found based on the input provided.</p></div>`;
-    }
-    if (warnings.length > 0) {
-    html += `<div class="alert alert-warning"><h4>Advisories & Considerations</h4><p>The following items should be noted:</p><ul>${warnings.map(w => `<li>${w}</li>`).join('')}</ul></div>`;
-    }
-    resultsEl.innerHTML = html;
-    };
-    window.calcExtension = function() {
-    const resultEl = $('#extensionResult');
-    const dos = $('#currentDOS').value;
-    const req = $('#requiredDate').value;
-    if (!dos || !req) { resultEl.innerHTML = ''; return; }
-    const dosDate = new Date(dos);
-    const reqDate = new Date(req);
-    if (reqDate <= dosDate) { resultEl.innerHTML = '<div class="alert alert-success">No extension needed. Current DOS meets requirement.</div>'; return; }
-    let months = (reqDate.getFullYear() - dosDate.getFullYear()) * 12;
-    months -= dosDate.getMonth();
-    months += reqDate.getMonth();
-    const requiredMonths = months <= 0 ? 0 : months + (reqDate.getDate() > dosDate.getDate() ? 1 : 0);
-    
-    if(requiredMonths > 48) {
-    resultEl.innerHTML = `<div class="alert alert-danger"><h4>Extension Required: ${requiredMonths} months</h4><p><strong>Warning:</strong> This exceeds the 48-month maximum extension limit per enlistment.</p></div>`;
-    } else {
-    resultEl.innerHTML = `<div class="alert alert-info"><h4>Extension Required: ${requiredMonths} months</h4><p>Member requires an extension of ${requiredMonths} month(s) to meet retainability.</p></div>`;
-    }
-    };
-    window.openForm = function(formId) {
-    const formDb = {
-    'DD4': { title: 'DD Form 4 - Enlistment/Reenlistment Document', desc: 'The primary contract for enlisting or reenlisting in the Armed Forces. It details the terms of service, enlistment options, and member acknowledgements.' },
-    'DAF901': { title: 'DAF Form 901 - Reenlistment Eligibility Annex', desc: 'Used to document a member\'s eligibility for reenlistment, including verification of requirements and commander\'s recommendation.' },
-    'DAF418': { title: 'DAF Form 418 - Selective Reenlistment Program (SRP) Consideration', desc: 'Documents the commander\'s decision for members being considered under the SRP, indicating selection or non-selection for continued service.' },
-    'DAF1411': { title: 'DAF Form 1411 - Extension of Enlistment', desc: 'The official form used to request and process an extension of a member\'s current enlistment for a specified reason and duration.' },
-    'DAF2096': { title: 'DAF Form 2096 - Classification/On-the-Job Training Action', desc: 'Used to document changes in a member\'s classification, AFSC, or OJT status, which can impact reenlistment eligibility for specific roles.' },
-    'DAFI36-2606': { title: 'DAFI 36-2606 - Reenlistment and Extension of Enlistment in the DAF', desc: 'The governing instruction that outlines all policies, procedures, and rules for reenlistments and extensions.' },
-    'AFI36-2110': { title: 'AFI 36-2110 - Assignments', desc: 'The instruction governing assignments, which often dictates retainability requirements that necessitate extensions of enlistment.' },
-    };
-    const info = formDb[formId];
-    if (!info) return;
-    $('#formTitle').textContent = info.title;
-    $('#formContent').innerHTML = `<p>${info.desc}</p><a href="https://www.e-publishing.af.mil/" target="_blank" class="btn" style="margin-top: 0.5rem;">Search on e-Publishing</a>`;
-    showModal('modalFormInfo');
-    };
+          function splitCsvLine(line, delimiter) {
+            const out = []; let current = ''; let inQuotes = false;
+            for (let i = 0; i < line.length; i++) {
+              const ch = line[i];
+              if (ch === '"' && line[i + 1] === '"') { current += '"'; i++; continue; }
+              if (ch === '"') { inQuotes = !inQuotes; continue; }
+              if (ch === delimiter && !inQuotes) { out.push(current.trim()); current = ''; continue; }
+              current += ch;
+            }
+            out.push(current.trim());
+            return out.map(v => v.replace(/^"|"$/g, ''));
+          }
 
-    // --- MEMBER ACTIONS (CRUD) ---
-    window.openAddMember = function() {
-    editingId = null;
-    $('#addEditTitle').textContent = 'Add New Member';
-    $('#addMemberForm').reset();
-    
-    showModal('modalAddMember');
-    };
-    window.editMember = function(id) {
-    const member = members.find(m => m.id === id);
-    if (!member) return;
-    editingId = id;
-    $('#addEditTitle').textContent = 'Edit Member';
-    $('#memberName').value = member.name;
-    $('#memberRank').value = member.rank;
-    $('#memberDOS').value = member.dos;
-    $('#memberDEROS').value = member.deros || '';
-    $('#memberAFSC').value = member.afsc;
-    setSelectValueOrDefault($('#memberStatus'), member.status, 'pending');
-    
-    showModal('modalAddMember');
-    };
-    window.submitMember = function(event) {
-    event.preventDefault();
-    const memberData = {
-      name: $('#memberName').value.trim(),
-      rank: $('#memberRank').value,
-      dos: $('#memberDOS').value,
-      afsc: $('#memberAFSC').value.trim(),
-      status: $('#memberStatus').value
-    };
-    if (!memberData.name || !memberData.rank || !memberData.dos || !memberData.status) {
-      toast('Please complete all required fields', 'danger');
-      return false;
-    }
+          csvImportData = rows.map(row => {
+            const values = splitCsvLine(row, delimiter);
+            return {
+              name: values[colIndex.name] ?? '',
+              rank: values[colIndex.rank] ?? '',
+              afsc: colIndex.afsc !== -1 ? (values[colIndex.afsc] ?? '') : '',
+              dos: values[colIndex.dos] ?? '',
+              deros: colIndex.deros !== -1 ? (values[colIndex.deros] ?? '') : '',
+              status: 'pending'
+            };
+          }).filter(d => d && d.name && d.rank && d.dos);
 
-    // Parse DEROS typed as DD-Mon-YY or YYYY-MM-DD
-    const derosInput = $('#memberDEROS').value.trim();
-    const parsedDeros = derosInput ? parseDosDate(derosInput) : null;
-    memberData.deros = parsedDeros || null;
+          if (csvImportData.length === 0) { toast('Could not parse any valid member data from the file.', 'danger'); return; }
 
-    
+          const previewEl = $('#csvPreview');
+          const displayHeaders = ['Name', 'Rank', 'AFSC', 'DOS', 'DEROS', 'Status'];
+          previewEl.innerHTML =
+            `<table class="form-control" style="width:100%; text-align: left;">
+              <thead><tr>${displayHeaders.map(h=>`<th>${h}</th>`).join('')}</tr></thead>
+              <tbody>${csvImportData.map(d=>`<tr>
+                <td>${d.name}</td><td>${normalizeGrade(d.rank)}</td><td>${d.afsc}</td><td>${d.dos}</td><td>${d.deros || ''}</td><td>${d.status}</td>
+              </tr>`).join('')}</tbody>
+              </table>`;
+          $('#btnConfirmImport').disabled = false;
+          showModal('modalImportCsv');
+        };
+        reader.readAsText(file);
+        event.target.value = '';
+      }
+      window.confirmCsvImport = function() {
+        let importedCount = 0;
+        csvImportData.forEach(item => {
+          const parsedDos = parseDosDate(item.dos);
+          const parsedDeros = item.deros ? parseDosDate(item.deros) : null;
+          if (item.name && item.rank && parsedDos) {
+            const member = {
+              name: item.name,
+              rank: item.rank,
+              dos: parsedDos,
+              deros: parsedDeros || null,
+              afsc: item.afsc || 'N/A',
+              status: item.status || 'pending',
+              id: Date.now() + Math.random()
+            };
+            computeDEROSDerivedFields(member);
+            members.push(member);
+            importedCount++;
+          }
+        });
+        save();
+        render();
+        closeModal('modalImportCsv');
+        if (importedCount > 0) {
+          toast(`${importedCount} members imported successfully!`, 'success');
+        } else {
+          toast('No valid members could be imported. Check data format.', 'danger');
+        }
+        csvImportData = [];
+        $('#btnConfirmImport').disabled = true;
+      };
 
-    if (editingId) {
-      members = members.map(m => {
-        if (m.id !== editingId) return m;
-        const updated = { ...m, ...memberData, id: editingId };
-        computeDEROSDerivedFields(updated);
-        return updated;
+      // --- TOOLS & CALCULATORS ---
+      window.checkEligibility = function() {
+        const resultsEl = $('#eligibilityResults');
+        const issues = [];
+        const warnings = [];
+        
+        // Disqualifying factors
+        if ($('#uif').checked) issues.push("Has a UIF.");
+        if ($('#lostTime').checked) issues.push("Has 5 or more days of lost time.");
+        if ($('#fitnessFailure').checked) issues.push("Is a current fitness failure.");
+        if ($('#controlRoster').checked) issues.push("Is on the Control Roster.");
+        if ($('#pendingLegal').checked) issues.push("Has pending legal action.");
+        const reCode = $('#reCode').value;
+        if (reCode.startsWith('2') || reCode.startsWith('4')) issues.push(`RE Code (${reCode}) indicates ineligibility.`);
+        
+        // Warnings
+        if ($('#nonUsCitizen').checked) warnings.push("Is a non-US Citizen (may require additional processing).");
+        
+        // Reenlistment Window Check
+        const memberType = $('#memberType').value;
+        const enlistmentLength = parseInt($('#enlistmentLength').value, 10);
+        const monthsServed = parseInt($('#monthsServed').value, 10);
+        if (memberType === 'fta' || memberType === 'ftg') {
+          if (enlistmentLength === 4 && (monthsServed < 35 || monthsServed > 47)) {
+            warnings.push("FTA on a 4-year enlistment is outside the standard reenlistment window (35-47 months).");
+          } else if (enlistmentLength === 6 && (monthsServed < 59 || monthsServed > 71)) {
+            warnings.push("FTA on a 6-year enlistment is outside the standard reenlistment window (59-71 months).");
+          }
+        }
+
+        let html = '';
+        if (issues.length > 0) {
+          html += `<div class="alert alert-danger"><h4>Ineligible for Reenlistment</h4><p>The following disqualifying factors are present:</p><ul>${issues.map(i => `<li>${i}</li>`).join('')}</ul></div>`;
+        } else {
+          html += `<div class="alert alert-success"><h4>Eligible for Reenlistment</h4><p>No immediate disqualifying factors were found based on the input provided.</p></div>`;
+        }
+        if (warnings.length > 0) {
+          html += `<div class="alert alert-warning"><h4>Advisories & Considerations</h4><p>The following items should be noted:</p><ul>${warnings.map(w => `<li>${w}</li>`).join('')}</ul></div>`;
+        }
+        resultsEl.innerHTML = html;
+      };
+      window.calcExtension = function() {
+        const resultEl = $('#extensionResult');
+        const dos = $('#currentDOS').value;
+        const req = $('#requiredDate').value;
+        if (!dos || !req) { resultEl.innerHTML = ''; return; }
+        const dosDate = new Date(dos);
+        const reqDate = new Date(req);
+        if (reqDate <= dosDate) { resultEl.innerHTML = '<div class="alert alert-success">No extension needed. Current DOS meets requirement.</div>'; return; }
+        let months = (reqDate.getFullYear() - dosDate.getFullYear()) * 12;
+        months -= dosDate.getMonth();
+        months += reqDate.getMonth();
+        const requiredMonths = months <= 0 ? 0 : months + (reqDate.getDate() > dosDate.getDate() ? 1 : 0);
+        
+        if(requiredMonths > 48) {
+          resultEl.innerHTML = `<div class="alert alert-danger"><h4>Extension Required: ${requiredMonths} months</h4><p><strong>Warning:</strong> This exceeds the 48-month maximum extension limit per enlistment.</p></div>`;
+        } else {
+          resultEl.innerHTML = `<div class="alert alert-info"><h4>Extension Required: ${requiredMonths} months</h4><p>Member requires an extension of ${requiredMonths} month(s) to meet retainability.</p></div>`;
+        }
+      };
+      window.openForm = function(formId) {
+        const formDb = {
+          'DD4': { title: 'DD Form 4 - Enlistment/Reenlistment Document', desc: 'The primary contract for enlisting or reenlisting in the Armed Forces. It details the terms of service, enlistment options, and member acknowledgements.' },
+          'DAF901': { title: 'DAF Form 901 - Reenlistment Eligibility Annex', desc: 'Used to document a member\'s eligibility for reenlistment, including verification of requirements and commander\'s recommendation.' },
+          'DAF418': { title: 'DAF Form 418 - Selective Reenlistment Program (SRP) Consideration', desc: 'Documents the commander\'s decision for members being considered under the SRP, indicating selection or non-selection for continued service.' },
+          'DAF1411': { title: 'DAF Form 1411 - Extension of Enlistment', desc: 'The official form used to request and process an extension of a member\'s current enlistment for a specified reason and duration.' },
+          'DAF2096': { title: 'DAF Form 2096 - Classification/On-the-Job Training Action', desc: 'Used to document changes in a member\'s classification, AFSC, or OJT status, which can impact reenlistment eligibility for specific roles.' },
+          'DAFI36-2606': { title: 'DAFI 36-2606 - Reenlistment and Extension of Enlistment in the DAF', desc: 'The governing instruction that outlines all policies, procedures, and rules for reenlistments and extensions.' },
+          'AFI36-2110': { title: 'AFI 36-2110 - Assignments', desc: 'The instruction governing assignments, which often dictates retainability requirements that necessitate extensions of enlistment.' },
+        };
+        const info = formDb[formId];
+        if (!info) return;
+        $('#formTitle').textContent = info.title;
+        $('#formContent').innerHTML = `<p>${info.desc}</p><a href="https://www.e-publishing.af.mil/" target="_blank" class="btn" style="margin-top: 0.5rem;">Search on e-Publishing</a>`;
+        showModal('modalFormInfo');
+      };
+
+      // --- MEMBER ACTIONS (CRUD) ---
+      window.openAddMember = function() {
+        editingId = null;
+        $('#addEditTitle').textContent = 'Add New Member';
+        $('#addMemberForm').reset();
+        showModal('modalAddMember');
+      };
+      window.editMember = function(id) {
+        const member = members.find(m => m.id === id);
+        if (!member) return;
+        editingId = id;
+        $('#addEditTitle').textContent = 'Edit Member';
+        $('#memberName').value = member.name;
+        $('#memberRank').value = member.rank;
+        $('#memberDOS').value = member.dos;
+        $('#memberDEROS').value = member.deros || '';
+        $('#memberAFSC').value = member.afsc;
+        setSelectValueOrDefault($('#memberStatus'), member.status, 'pending');
+        showModal('modalAddMember');
+      };
+      window.submitMember = function(event) {
+        event.preventDefault();
+        const memberData = {
+          name: $('#memberName').value.trim(),
+          rank: $('#memberRank').value,
+          dos: $('#memberDOS').value,
+          afsc: $('#memberAFSC').value.trim(),
+          status: $('#memberStatus').value
+        };
+        if (!memberData.name || !memberData.rank || !memberData.dos || !memberData.status) {
+          toast('Please complete all required fields', 'danger');
+          return false;
+        }
+
+        const derosInput = $('#memberDEROS').value.trim();
+        memberData.deros = derosInput ? parseDosDate(derosInput) : null;
+
+        if (editingId) {
+          members = members.map(m => {
+            if (m.id !== editingId) return m;
+            const updated = { ...m, ...memberData, id: editingId };
+            computeDEROSDerivedFields(updated);
+            return updated;
+          });
+          toast('Member updated successfully', 'success');
+        } else {
+          const newMember = { ...memberData, id: Date.now() };
+          computeDEROSDerivedFields(newMember);
+          members.push(newMember);
+          toast('Member added successfully', 'success');
+        }
+        
+        editingId = null;
+        save();
+        render();
+        closeModal('modalAddMember');
+      };
+      window.deleteMember = function(id) {
+        const member = members.find(m => m.id === id);
+        if (member && confirm(`Are you sure you want to delete ${normalizeGrade(member.rank)} ${formatDisplayName(member.name)}?`)) {
+            members = members.filter(m => m.id !== id);
+            save();
+            render();
+            toast('Member removed', 'warning');
+        }
+      };
+
+      // --- DASHBOARD & REPORTING ---
+      window.openBreakdown = function(type) {
+        const now = new Date();
+        const ninetyDaysFromNow = new Date(now.getTime() + 90 * 24 * 60 * 60 * 1000);
+        let title = '', desc = '', data = [];
+        switch(type) {
+          case 'total':
+            title = 'All Tracked Members';
+            desc = 'All members currently being tracked:';
+            data = members;
+            break;
+          case 'upcoming':
+            title = 'Upcoming Actions (Next 90 Days)';
+            desc = 'Members with DOS within 90 days (excluding completed):';
+            data = members.filter(m => { const d = new Date(m.dos); return d <= ninetyDaysFromNow && d > now && m.status !== 'completed'; });
+            break;
+          case 'eligible':
+            title = 'Reenlistment Eligible';
+            desc = 'Members marked as eligible for reenlistment:';
+            data = members.filter(m => m.status === 'eligible');
+            break;
+          case 'pending':
+            title = 'Pending Review';
+            desc = 'Members requiring review or with status in progress:';
+            data = members.filter(m => ['pending', 'extension', 'in_progress', 'awaiting_cc'].includes(m.status));
+            break;
+          case 'completed':
+            title = 'Completed Reenlistment';
+            desc = 'Members marked as Completed Reenlistment:';
+            data = members.filter(m => m.status === 'completed');
+            break;
+        }
+        $('#breakdownTitle').textContent = `${title} (${data.length})`;
+        $('#breakdownContent').innerHTML = `<p><em>${desc}</em></p>` + (!data.length ? '<div class="alert alert-info">No members in this category.</div>' : `<div style="max-height:60vh;overflow:auto;">${data.map(itemHTML).join('')}</div>`);
+        showModal('modalBreakdown');
+      };
+      window.generateReport = function() {
+        if (members.length === 0) { toast('No members to report on.', 'warning'); return; }
+        const now = new Date().toISOString().split('T')[0];
+        let txt = `USAF Reenlistment & Extension Report - ${now}\n====\n\n`;
+        txt += `Total Members: ${members.length}\n`;
+        txt += `Eligible: ${members.filter(m => m.status === 'eligible').length}\n`;
+        txt += `Pending Review: ${members.filter(m => ['pending', 'extension', 'in_progress', 'awaiting_cc'].includes(m.status)).length}\n`;
+        txt += `Completed: ${members.filter(m => m.status === 'completed').length}\n`;
+        txt += `Separating: ${members.filter(m => m.status === 'separating').length}\n\n`;
+        txt += `MEMBER DETAILS\n====\n`;
+        members.forEach(m => {
+          const displayName = formatDisplayName(m.name);
+          txt += `- ${m.rank} ${displayName} | AFSC: ${m.afsc || 'N/A'} | DOS: ${m.dos} | DEROS: ${m.deros || '—'} | Retainability: ${m.retainabilityMonths ?? '—'} mo | Assignment: ${m.assignmentEligible === true ? 'Eligible' : m.assignmentEligible === false ? 'Needs Retainability' : '—'} | Status: ${m.status}\n`;
+        });
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(new Blob([txt], { type: 'text/plain' }));
+        a.download = `USAF_Report_${now}.txt`;
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        toast('Report generated and downloaded!', 'success');
+      };
+
+      // --- EVENT LISTENERS ---
+      document.addEventListener('DOMContentLoaded', () => {
+        load();
+        computeDEROSDerivedFieldsForAllMembers(members); // populate for existing saved data
+        render();
+
+        $('#memberSearch').addEventListener('input', (e) => {
+          const searchTerm = e.target.value.toLowerCase();
+          const filtered = members.filter(m => 
+            (formatDisplayName(m.name) || '').toLowerCase().includes(searchTerm) ||
+            (m.rank || '').toLowerCase().includes(searchTerm) ||
+            (m.afsc && m.afsc.toLowerCase().includes(searchTerm))
+          );
+          renderList(filtered);
+        });
+
+        $('#csvFileInput').addEventListener('change', handleCsvFile);
       });
-      toast('Member updated successfully', 'success');
-    } else {
-      const newMember = { ...memberData, id: Date.now() };
-      computeDEROSDerivedFields(newMember);
-      members.push(newMember);
-      toast('Member added successfully', 'success');
-    }
-    computeDEROSDerivedFieldsForAllMembers(members); // safety for legacy entries
-    editingId = null;
-    save();
-    render();
-    closeModal('modalAddMember');
-    };
-    window.deleteMember = function(id) {
-    members = members.filter(m => m.id !== id);
-    save();
-    render();
-    toast('Member removed', 'warning');
-    };
-
-    // --- DASHBOARD & REPORTING ---
-    window.openBreakdown = function(type) {
-    const now = new Date();
-    const ninetyDaysFromNow = new Date(now.getTime() + 90 * 24 * 60 * 60 * 1000);
-    let title = '', desc = '', data = [];
-    switch(type) {
-    case 'total':
-    title = 'All Tracked Members';
-    case 'completedReen':
-      title = 'Completed Reenlistment';
-      desc = 'Members marked as Completed Reenlistment:';
-      data = members.filter(m => m.status === 'completed');
-      break;
-
-    desc = 'All members currently being tracked:';
-    data = members;
-    break;
-    case 'upcoming':
-    title = 'Upcoming Actions (Next 90 Days)';
-    desc = 'Members with DOS within 90 days:';
-    data = members.filter(m => { const d = new Date(m.dos); return d <= ninetyDaysFromNow && d > now; });
-    break;
-    case 'completed':
-    title = 'Reenlistment Eligible';
-    desc = 'Members marked as eligible for reenlistment:';
-    data = members.filter(m => m.status === 'eligible');
-    break;
-    case 'pending':
-    title = 'Pending Review';
-    desc = 'Members requiring review or needing extensions:';
-    data = members.filter(m => m.status === 'pending' || m.status === 'extension');
-    break;
-    }
-    $('#breakdownTitle').textContent = `${title} (${data.length})`;
-    $('#breakdownContent').innerHTML = `<p><em>${desc}</em></p>` + (!data.length ? '<div class="alert alert-info">No members in this category.</div>' : `<div style="max-height:60vh;overflow:auto;">${data.map(itemHTML).join('')}</div>`);
-    showModal('modalBreakdown');
-    };
-    window.generateReport = function() {
-    if (members.length === 0) { toast('No members to report on.', 'warning'); return; }
-    const now = new Date().toISOString().split('T')[0];
-    let txt = `USAF Reenlistment & Extension Report - ${now}\n====\n\n`;
-    txt += `Total Members: ${members.length}\n`;
-    txt += `Eligible: ${members.filter(m => m.status === 'eligible').length}\n`;
-    txt += `Pending Review: ${members.filter(m => m.status === 'pending').length}\n`;
-    txt += `Needs Extension: ${members.filter(m => m.status === 'extension').length}\n`;
-    txt += `Separating: ${members.filter(m => m.status === 'separating').length}\n\n`;
-    txt += `MEMBER DETAILS\n====\n`;
-    members.forEach(m => {
-      const displayName = formatDisplayName(m.name);
-      txt += `- ${m.rank} ${displayName} | AFSC: ${m.afsc || 'N/A'} | DOS: ${m.dos} | DEROS: ${m.deros || '—'} | Retainability: ${m.retainabilityMonths ?? '—'} mo | Assignment: ${m.assignmentEligible === true ? 'Eligible' : m.assignmentEligible === false ? 'Needs Retainability' : '—'} | Status: ${m.status}\n`;
-    });
-    const a = document.createElement('a');
-    a.href = URL.createObjectURL(new Blob([txt], { type: 'text/plain' }));
-    a.download = `USAF_Report_${now}.txt`;
-    document.body.appendChild(a);
-    a.click();
-    a.remove();
-    toast('Report generated and downloaded!', 'success');
-    };
-
-    // --- EVENT LISTENERS ---
-    document.addEventListener('DOMContentLoaded', () => {
-    load();
-    computeDEROSDerivedFieldsForAllMembers(members); // populate for existing saved data
-    render();
-
-    $('#memberSearch').addEventListener('input', (e) => {
-    const searchTerm = e.target.value.toLowerCase();
-    const filtered = members.filter(m => 
-    (formatDisplayName(m.name) || '').toLowerCase().includes(searchTerm) ||
-    (m.rank || '').toLowerCase().includes(searchTerm) ||
-    (m.afsc && m.afsc.toLowerCase().includes(searchTerm))
-    );
-    renderList(filtered);
-    });
-
-    $('#csvFileInput').addEventListener('change', handleCsvFile);
-    });
     })();
   </script>
 </body>
